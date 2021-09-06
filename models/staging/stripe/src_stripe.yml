@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: stripe
+    database: raw
+    tables:
+      - name: payment
+        loaded_at_field: cast(created as datetime)
+        freshness:
+          warn_after: {count: 1, period: day}
+          error_after: {count: 2, period: day}
